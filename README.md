@@ -32,12 +32,22 @@ function getMic(cb) {
 
 getMic(function (micAudioNode) {
     measureImpulseResponse(micAudioNode, audioContext.destination, {
-        sineSweepLengthSecs: 5.0
-    }).then(function (impulseResponseWAV, rawAudioBuffers) {
-        console.log("ImpulseResponseWAV is a blob: ", impulseResponseWAV);
+        sineSweepLengthSecs: 5.0,
+        startFreq: 60.0,
+        endFreq: 16000.0,
+        impulseResponseLengthSecs: 1.0        
+    }).then(function (impulseResponseWAV, buffers) {
+        console.log("impulseResponseWAV is a binary blob: ", impulseResponseWAV);
         
         // Lets have the browser download the blob as ir.wav
         downloadWav(impulseResponseWAV, "ir.wav");
+        
+        // Or we could apply it to a ConvolverNode to synthesize this room's reverb
+        var irAudioBuffer = buffers.irBuffer;
+        var convolverNode = audioContext.createConvolver();
+        convolverNode.buffer = irAudioBuffer;
+        
+        // ... now do something with the convolver node...
     });
 });
 
