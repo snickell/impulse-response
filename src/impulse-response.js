@@ -31,7 +31,7 @@ function arraysToAudioBuffer(ctx, channelArray) {
 
 function convolve (convolveBy, toConvolve, sampleRate, cb) {
   var numChannels = 1;
-  var numSamples = Math.max(inArray[0].length, outArray[0].length);  
+  var numSamples = Math.max(convolveBy[0].length, toConvolve[0].length);  
 
   var offlineCtx = new OfflineAudioContext(numChannels, numSamples, sampleRate);  
     
