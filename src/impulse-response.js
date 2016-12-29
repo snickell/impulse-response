@@ -119,8 +119,8 @@ function measureImpulseResponse(inAudioNode, outAudioNode, config) {
   recordOut.record();
   
   // Run the sweep from now until config.sineSweepLengthSecs
-  sine.start(audioCtx.currentTime);
-  sine.stop(audioCtx.currentTime + config.sineSweepLengthSecs);  
+  sine.start(ctx.currentTime);
+  sine.stop(ctx.currentTime + config.sineSweepLengthSecs);  
   
   // Run the sweep, then give a little time to 'ring out'
   var recordingLength = config.sineSweepLengthSecs + config.impulseResponseLengthSecs;
