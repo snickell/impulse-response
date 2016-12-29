@@ -17,7 +17,7 @@ import { measureImpulseResponse, downloadWav } from 'impulse-response';
 
 var audioContext = new AudioContext();
 
-function getMicAudioNode(cb) {
+function getMic(cb) {
     navigator.getUserMedia(
         { audio: {  optional: [
             {googEchoCancellation: false},
@@ -30,7 +30,7 @@ function getMicAudioNode(cb) {
     );    
 }
 
-getMicAudioNode(function (micAudioNode) {
+getMic(function (micAudioNode) {
     measureImpulseResponse(micAudioNode, audioContext.destination, {
         sineSweepLengthSecs: 5.0
     }).then(function (impulseResponseWAV, rawAudioBuffers) {
