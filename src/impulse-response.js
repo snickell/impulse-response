@@ -74,8 +74,6 @@ function convolve (convolveBy, toConvolve, sampleRate, cb) {
       toConvolveBuf: toConvolveBuf,
       convolveByBuf: convolveByBuf
     });
-
-    console.log("Saved");
   };
   
   offlineCtx.startRendering();  
